@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar Mascara de introdução-BI</title>
+
+
+    <style>
+        body{
+            margin: 0%;
+            padding: 0%;
+            background-color: whitesmoke;
+        }
+        .form{
+            padding: 20px;
+            width: 100%;
+            height: 50%;
+            background-color: rgb(49, 48, 48);
+           
+        }
+        .form input{
+            padding: 10px;
+            width: 50%;
+            height: 50%;
+            align-items: center;
+            color: black;
+            padding-left: 30px;
+        }
+        .form button{
+            width: 70px;
+            height: 50px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+        <form action="" method="post" class="form">
+             <input type="text" name="bi" id="bi" maxlength="14" placeholder="Informe seu numero do bilhete de identidade">
+             <button type="reset">Limpar</button>
+        </form>
+    
+</body>
+ <script>
+                    const input = document.getElementById('bi');
+
+                input.addEventListener('input', () => {
+                let value = input.value;
+                
+                // Permitir apenas números nas posições corretas
+                if(value.length<=9){
+                    value = value.replace(/[^0-9]/g, '').substring(0,14);
+                }
+
+                // Permitir letras (A-Z, a-z) nas posições 10 e 11
+                if (value.length >9 && value.length==11) {
+                    value = value.substring(0,9) + value.substring(9,11).replace(/[^A-Za-z]/g, '') + value.substring(11);
+                }
+                if(value.length>11){
+                    value = value.substring(0,11) + value.substring(11,14).replace(/[^0-9]/g, '') + value.substring(14);
+                }
+
+                input.value = value;
+                });
+ </script>
+</html>
